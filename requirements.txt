@@ -1,0 +1,2 @@
+auth0-python==3.1.4
+requests==2.18.4

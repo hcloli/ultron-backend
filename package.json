@@ -1,0 +1,25 @@
+{
+  "name": "ultron-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hcloli/ultron-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hcloli/ultron-backend/issues"
+  },
+  "homepage": "https://github.com/hcloli/ultron-backend#readme",
+  "dependencies": {
+    "serverless-python-requirements": "^3.3.0"
+  }
+}

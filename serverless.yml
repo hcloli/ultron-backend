@@ -54,6 +54,13 @@ provider:
 #            - "Ref" : "ServerlessDeploymentBucket"
 #            - "/*"
 
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
 # you can define service wide environment variables here
 #  environment:
 #    variable1: value1
@@ -68,15 +75,20 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
+  hello_world:
     handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+          cors: true
 
-  create:
+  create_game:
     handler: quiz/add_games.create_game
     events:
       - http:
-          path: games/create
-          method: get
+          path: games
+          method: post
           cors: true
 
 #    The following are a few example events you can configure
@@ -113,24 +125,24 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-resources:
-  Resources:
-    GamesDynamoDbTable:
-      Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
-      Properties:
-        AttributeDefinitions:
-          -
-            AttributeName: game_id
-            AttributeType: S
-        KeySchema:
-          -
-            AttributeName: game_id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-        TableName: ${self:provider.environment.DYNAMODB_TABLE_GAMES}
+#resources:
+#  Resources:
+#    GamesDynamoDbTable:
+#      Type: 'AWS::DynamoDB::Table'
+#      DeletionPolicy: Retain
+#      Properties:
+#        AttributeDefinitions:
+#          -
+#            AttributeName: game_id
+#            AttributeType: S
+#        KeySchema:
+#          -
+#            AttributeName: game_id
+#            KeyType: HASH
+#        ProvisionedThroughput:
+#          ReadCapacityUnits: 1
+#          WriteCapacityUnits: 1
+#        TableName: ${self:provider.environment.DYNAMODB_TABLE_GAMES}
 
 #    NewResource:
 #      Type: AWS::S3::Bucket
