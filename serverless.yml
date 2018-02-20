@@ -23,6 +23,7 @@ provider:
   region: ap-northeast-2
   environment:
     DYNAMODB_TABLE_GAMES: ultron-games
+    DYNAMODB_TABLE_SUBMITS: ultron-games-submits
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -33,6 +34,24 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
       Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_GAMES}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_SUBMITS}"
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE_SUBMITS}/index/*"
 
 # you can overwrite defaults here
 #  stage: dev
@@ -66,10 +85,9 @@ custom:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  include:
-#    - include-me.py
-#    - include-me-dir/**
+package:
+  include:
+    - questions/**
 #  exclude:
 #    - exclude-me.py
 #    - exclude-me-dir/**
@@ -83,12 +101,44 @@ functions:
           method: get
           cors: true
 
-  create_game:
-    handler: quiz/add_games.create_game
+  create:
+    handler: quiz/game.new_quiz
     events:
       - http:
-          path: games
+          path: games/create
           method: post
+          cors: true
+
+  next:
+    handler: quiz/game.get_question
+    events:
+      - http:
+          path: games/{quiz_id}/next
+          method: get
+          cors: true
+
+  submit:
+    handler: quiz/game.submit_answer
+    events:
+      - http:
+          path: games/{quiz_id}/question/{question_id}/submit
+          method: post
+          cors: true
+
+  result:
+    handler: quiz/game.get_result
+    events:
+      - http:
+          path: games/{quiz_id}/result
+          method: get
+          cors: true
+
+  history:
+    handler: quiz/games.get_history
+    events:
+      - http:
+          path: games/user/{user_id}/history
+          method: get
           cors: true
 
 #    The following are a few example events you can configure

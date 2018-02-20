@@ -1,0 +1,84 @@
+{
+  "id": "1",
+  "name": "Ultron",
+  "level": 1,
+  "questions": [
+    {
+      "id": "1.1",
+      "question": "What is the name of Tikal's favorite dog?",
+      "options": {
+        "geshem": "Geshem",
+        "gal": "Gal",
+        "sheleg": "Sheleg",
+        "john": "John"
+      },
+      "answer": "sheleg"
+    },
+    {
+      "id": "1.2",
+      "question": "The year Tikal founded",
+      "options": {
+        "a": "1997",
+        "b": "2008",
+        "c": "1999",
+        "d": "2010"
+      },
+      "answer": "c"
+    },
+    {
+      "id": "1.3",
+      "question": "Which is the slowest JS framework?",
+      "options": {
+        "a": "Angular",
+        "b": "React",
+        "c": "Vue",
+        "d": "slim.js"
+      },
+      "answer": "a"
+    },
+    {
+      "id": "1.4",
+      "question": "Which cryptocurrency has a larger marketcap?",
+      "options": {
+        "a": "Ethereum Classic",
+        "b": "Monero",
+        "c": "IOTA",
+        "d": "Cardano"
+      },
+      "answer": "d"
+    },
+    {
+      "id": "1.5",
+      "question": "What is the unusual?",
+      "options": {
+        "a": "Heroku",
+        "b": "OpenShift",
+        "c": "Cloud9",
+        "d": "GKE"
+      },
+      "answer": "c"
+    },
+    {
+      "id": "1.6",
+      "question": "How many employees are in Tikal?",
+      "options": {
+        "a": "About 100",
+        "b": "About 130",
+        "c": "About 150",
+        "d": "About 160"
+      },
+      "answer": "b"
+    },
+    {
+      "id": "1.7",
+      "question": "What is Elvis Presley s middle name?",
+      "options": {
+        "a": "Aaron",
+        "b": "Abraham",
+        "c": "Aric",
+        "d": "Elton"
+      },
+      "answer": "b"
+    }
+  ]
+}
